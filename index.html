@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Data Visualization</title>
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- PapaParse for CSV parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Financial Data Visualization</h1>
+            <p>Explore market data and trends</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Sidebar with company listing -->
+            <aside class="sidebar">
+                <h2>Companies/Indices</h2>
+                <div class="search-container">
+                    <input type="text" id="company-search" placeholder="Search companies...">
+                </div>
+                <div id="company-list" class="company-list">
+                    <!-- Company items will be populated here -->
+                    <div class="loading">Loading companies...</div>
+                </div>
+            </aside>
+
+            <!-- Main content area -->
+            <main class="content">
+                <div id="error-message" class="error-message"></div>
+                
+                <!-- Company info header -->
+                <div class="company-header">
+                    <h2 id="selected-company">Select a company</h2>
+                    
+                    <!-- Date range filter -->
+                    <form id="date-range-form" class="date-range-form">
+                        <div class="form-group">
+                            <label for="start-date">From:</label>
+                            <input type="date" id="start-date">
+                        </div>
+                        <div class="form-group">
+                            <label for="end-date">To:</label>
+                            <input type="date" id="end-date">
+                        </div>
+                        <button type="submit" class="btn">Apply Filter</button>
+                    </form>
+                </div>
+                
+                <!-- Charts section -->
+                <div class="charts-container">
+                    <!-- Price chart -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Price History</h3>
+                            <div class="chart-controls">
+                                <button id="line-btn" class="btn btn-small btn-active">Line</button>
+                                <button id="candlestick-btn" class="btn btn-small">Candlestick</button>
+                            </div>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="price-chart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Volume chart -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Trading Volume</h3>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="volume-chart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Performance metrics chart -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Performance Metrics</h3>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="metrics-chart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Data table -->
+                    <div class="chart-card full-width">
+                        <div class="chart-header">
+                            <h3>Historical Data</h3>
+                        </div>
+                        <div class="chart-body">
+                            <div class="table-container">
+                                <table id="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Open</th>
+                                            <th>High</th>
+                                            <th>Low</th>
+                                            <th>Close</th>
+                                            <th>Change (%)</th>
+                                            <th>Volume</th>
+                                            <th>P/E</th>
+                                            <th>P/B</th>
+                                            <th>Yield (%)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="data-table-body">
+                                        <!-- Table data will be populated here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <footer class="footer">
+            <p>Financial Data Visualization Tool | CSV Data Explorer</p>
+        </footer>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
